@@ -8,7 +8,10 @@
 </head>
 {% block content %}
     <body>
-        <h3>Carro 1: {{ cars.model }}</h3>
+        {% for car in cars %} <!--FOR em django text language -->
+            <h3>{{ car.brand }} - {{ car.model }} - {{car.factory_year}}</h3> <!-- A CHAVE DUPLA SERVE PARA ACESSAR OS OBJETOS //car pois o for nomeou cada item de cars como car.-->
+        {% endfor %}
+        
     </body>
 {% endblock %}
 </html>
