@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %} <!-- Já vem pronto com uma série de proteções. -->
+
+    {{ new_car_form }}
+
+</form> <!-- mpfd é para dizer que vai precisar enviar alguns tipos de conteúdo -->
+
+{% endblock %}
