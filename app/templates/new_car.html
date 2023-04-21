@@ -5,7 +5,11 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %} <!-- Já vem pronto com uma série de proteções. -->
 
-    {{ new_car_form }}
+    <table>
+        {{ new_car_form.as_table }}
+    </table> <!-- O as_p é pedindo para renderizar o forms como paragrafo // O as_table renderiza como tabela, mas precisa estar dentro da tag table-->
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary">
 
 </form> <!-- mpfd é para dizer que vai precisar enviar alguns tipos de conteúdo -->
 
