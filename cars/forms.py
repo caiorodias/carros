@@ -8,6 +8,22 @@ class CarModelForm(forms.ModelForm): # Isso substitui tudo isso comentado de cim
         model = Car
         fields = '__all__' # Qual campo da tabela Car você quer?
 
+# Validações (quando o is_valid da view for acionado ele vai verificar se tudo aqui está válido)
+
+    def clean_value(self): # clean diz que essa é uma função de validação e o nome do campo validado
+        value = self.cleaned_data.get('value') # Capturando o valor de value
+        if value < 20000:
+            self.add_error('value', 'Valor mínimo do carro deve ser de R$ 20.000,00')
+        else:
+            return value
+        
+    def clean_factory_year(self):
+        factory_year = self.cleaned_data.get('factory_year')
+        if factory_year < 1975:
+            self.add_error('factory_year', 'Não é possível cadastrar carros fabricados antes de 1975') # Aqui o factory_year é o campo e não a variável
+        else:
+            return factory_year
+
 
 
 # Forma errada usando o modo Form simples
