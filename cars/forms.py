@@ -1,7 +1,18 @@
 from django import forms
 from cars.models import Brand, Car
 
-class CarForm(forms.Form): #forms.Form já é um formulário pronto do django.
+# Forma correta usando o ModelForm
+
+class CarModelForm(forms.ModelForm): # Isso substitui tudo isso comentado de cima, pq liga diretamente com o model Car
+    class Meta:
+        model = Car
+        fields = '__all__' # Qual campo da tabela Car você quer?
+
+
+
+# Forma errada usando o modo Form simples
+
+""" class CarForm(forms.Form): #forms.Form já é um formulário pronto do django.
     model = forms.CharField(max_length= 200)
     brand = forms.ModelChoiceField(Brand.objects.all()) #Puxando as marcas pelo query sets.
     factory_year = forms.IntegerField() 
@@ -21,4 +32,4 @@ class CarForm(forms.Form): #forms.Form já é um formulário pronto do django.
             photo = self.cleaned_data['photo'],
         )
         car.save()
-        return car
+        return car """
