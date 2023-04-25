@@ -66,15 +66,47 @@
         background-color: #999;
     }
 
+    .button {
+      font-family: 'Arial', 'Open Sans';
+      font-size: .85rem;
+      appearance: auto;
+      user-select: none;
+      white-space: pre;
+      border-radius: 4px;
+      text-decoration: none;
+      text-align: center;
+      cursor: default;
+      box-sizing: border-box;
+      background-color: buttonface;
+      color: buttontext;
+      padding: 2px 6px;
+      border-width: 1px;
+      border-style: outset;
+      border-color: buttonborder;
+      border-image: initial;
+    }
+
+    .button:hover {
+      background-color: #bbbaba56;
+    }
+
   </style>
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="{% url 'cars_list' %}">Feirão Caio Dias</a></li>
-        <li><a href="{% url 'new_car' %}">Login</a></li>
-        <li><a href="{% url 'register' %}">Cadastrar Carro</a></li>
+        {% if user.is_authenticated %}
+          <li>Olá, {{ user.username }}</li>
+          <li><a href="{% url 'logout' %}">Sair</a></li>
+          <li><a href="{% url 'new_car' %}">Cadastrar Carro</a></li>
+
+        {% else %}
+          <li><a href="{% url 'login' %}">Conta</a></li>
+        {% endif %}
+
+        <li><a href="{% url 'cars_list' %}">Carros</a></li>
+        
       </ul>
     </nav>
   </header>
