@@ -28,7 +28,7 @@
 
     .car-card img {
       width: 100%;
-      height: 200px;
+      height: 168px;
       object-fit: cover;
     }
 
@@ -77,28 +77,14 @@
         border-bottom-color: #e3e1e1;
     }
 
-    button[type="submit"] {
-        background-color: #0096c7;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #108eb8;
-    }
   </style>
 
-  <form method="GET" action="{% url 'cars_list' %}"> <!-- A função desse formulário, é bater em uma url que o nome é car_list, então a url precisa ser criada. -->
+  <form class="text-black" method="GET" action="{% url 'cars_list' %}"> <!-- A função desse formulário, é bater em uma url que o nome é car_list, então a url precisa ser criada. -->
     <input type="text" name="search" placeholder="Buscar carro...">
-    <button type="submit">Buscar</button>
+    <button type="submit" class="button text-white hover:bg-gradient-to-tl bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 font-bold h-12">BUSCAR</button>
   </form>
 
-  <div class="car-grid">
+  <div class="car-grid text-black">
     {% if cars %}
       {% for car in cars %}
         <div class="car-card">

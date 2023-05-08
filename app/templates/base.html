@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>{% block title %}{% endblock %}</title>
   <style>
     body {
@@ -92,31 +94,35 @@
 
   </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <ul>
+<body class="bg-blue-500">
+  <header class="h-screen">
+    <div class="flex">
+      <div class="flex-col bg-gray-900 text-white w-44 h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
+        <img class="filter p-4 drop-shadow-white-900" src="https://lh3.googleusercontent.com/G58aWMpPRMe0FJHbpErzOX_BoBPM1n-CdFc2a_bZaSD_vp0qeRafasFs0obbPVwGGZ5Q6OHP7eOjdMAai8K5sc4gMh3Y5P_Y9pSczGA6XdpkL2k8zZgi7Lnmyzulo-FlkvP5A7GfM_8j-4PnnOVuZ8ZRfE-6Yoldok7tvDaEgu4uX2AzmwZoeFo_fqKbIjIpAKpUKVI80CFS4nXPDtMZhNPwmHA0DEIuIyKM1cehyyh68ajY7W-GcaJokEWwI9Di10aNbvpCYKJOizk85dkm6K85Nrz3P2f-U4ecrGmmP7qjtshmP3IjjgsedZLpDrwZXokgWEs2CgtGZW9ydKSsqadQnStR1A3JscNr1B6CDozsgIq4om3T-SuGxIl-5J_NoaqEtyEd8tHCb5E4I3R-8MQ5Q5T5qEDqqrZYDDwIkIBva7KY3coi-8s0cUQchqoBfcQd2zQFZbh-3ejwgjOFTBFEXfDWYJWxi_IuFWrqyS8lP6PSxRiabflsYSxlTOsN6Lj87n-OtBJEIh64QYirfK7EzPX5F5Z8WFUgIvUEYLEPSzf3naYvwzhKtxuSulHZAWCgGZBPQ8jOkcSQF21VFOqITOFUIBzTQ_wydUJFnGKKkI_xAkuzp62JAJ4MaHTkv32Lv0H0lylpB6-Utj_RrKqZ5AG98S0bzJbNF-jqwod0rqa2FFewX9PhY4spacNRR2bm6BS3vb-q-6ESYdjI1ghlHs0tm_yzGaUUcn6uY-2mh3hyoiV4muCck7KWw8i0pX95P8aOBeGSjwc0khAl00HeVSJy-VKmWIk7-krfddSX5UAIrPm6mncB_9tnt-L3tgzsD0EZtuzmD0e828I7I-1fduwRnsllcUcKZwi4mSwRAyhnKRmLvnT8uLuQTNnoXDo8beItEeRQmQ4Fhqkvr5VLb79cAZZYd7QX3rgbgdnDlLbr=w512-h304-s-no?authuser=0" alt="Logo">
         {% if user.is_authenticated %}
-          <li>Olá, {{ user.username }}</li>
-          <li><a href="{% url 'logout' %}">Sair</a></li>
-          <li><a href="{% url 'new_car' %}">Cadastrar Carro</a></li>
-
+          <div class="p-4">Olá, {{user.first_name}}</div>
+          <a href="{% url 'logout' %}">
+            <div class="p-4 hover:bg-gradient-to-r from-transparent via-blue-800 to-gray-700">Sair</div>
+          </a>
+          <a href="{% url 'new_car' %}">
+            <div class="p-4 hover:bg-gradient-to-r from-transparent via-blue-800 to-gray-700">Cadastrar Carro</div>
+          </a>
         {% else %}
-          <li><a href="{% url 'login' %}">Conta</a></li>
+          <a href="{% url 'login' %}">
+            <div class="p-4 hover:bg-gradient-to-r from-transparent via-blue-800 to-gray-700">Conta</div>
+          </a>
         {% endif %}
-
-        <li><a href="{% url 'cars_list' %}">Carros</a></li>
-        
-      </ul>
-    </nav>
+        <a href="{% url 'cars_list' %}">
+          <div class="p-4 hover:bg-gradient-to-r from-transparent via-blue-800 to-gray-700">Carros</div>
+        </a>
+      </div> 
+      <main class="relative">
+        {% block content %}
+        {% endblock %}
+      </main>
+    </div>
   </header>
-
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-
-  <footer>
+  <footer class="absolute w-full">
     <p>&copy; 2023 Caio Dias</p>
   </footer>
 </body>
